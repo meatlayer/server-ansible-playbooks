@@ -7,6 +7,6 @@ mysql_role:
     - "deb http://repo.mysql.com/apt/{{ ansible_distribution|lower }}/ {{ ansible_distribution_release }} mysql-tools"
     - "deb-src http://repo.mysql.com/apt/{{ ansible_distribution|lower }}/ {{ ansible_distribution_release }} mysql-5.7"
   service: mysql
-#  dependences: python-mysqldb
+  dependences: python3-mysqldb
   packages:
     - mysql-server
