@@ -13,11 +13,14 @@
   when: ansible_os_family == "Debian" and mysqld_stat.stat.exists == False
 
 #Installing Mysql
-  #APT
+  #TODO APT key will expire in the future on be 2025-10-22 and its value will need to be changed
+  #TODO:
+  #gpg --keyserver keyserver.ubuntu.com --recv B7B3B788A8D3785C
+  #gpg --export B7B3B788A8D3785C | tee /etc/apt/trusted.gpg.d/mysql.gpg > /dev/null
 - name: Add Mysql apt key.
   apt_key:
     keyserver: keyserver.ubuntu.com
-    id: 467B942D3A79BD29
+    id: B7B3B788A8D3785C
     state: present
   when: ansible_os_family == "Debian"
   tags:
