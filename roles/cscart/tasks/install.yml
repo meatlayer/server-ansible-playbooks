@@ -28,9 +28,9 @@
   with_nested:
     - "{{ stores }}"
     - [
-      { path: 'var', mode: 777 },
-      { path: 'images', mode: 777 },
-      { path: 'design', mode: 777 },
+      { path: 'var', mode: 755 },
+      { path: 'images', mode: 755 },
+      { path: 'design', mode: 755 },
       { path: 'var/.htaccess', mode: 644 },
       { path: 'images/.htaccess', mode: 644 },
       { path: 'design/.htaccess', mode: 644 }
