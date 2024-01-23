@@ -16,18 +16,24 @@ net_read_timeout      = {{ mysql.net_read_timeout|default("30") }}
 net_write_timeout     = {{ mysql.net_write_timeout|default("30") }}
 
 max_allowed_packet    = {{ mysql.max_allowed_packet|default("128M") }}
-query_cache_type      = {{ mysql.query_cache_type|default("1") }}
-query_cache_limit     = {{ mysql.query_cache_limit|default("2M") }}
-query_cache_size      = {{ mysql.query_cache_size|default("128M") }}
 
-max_connections       = {{ mysql.max_connections|default("150") }}
-sort_buffer_size      = {{ mysql.sort_buffer_size|default("2M") }}
+max_connections       = {{ mysql.max_connections|default("75") }}
+sort_buffer_size      = {{ mysql.sort_buffer_size|default("8M") }}
 read_buffer_size      = {{ mysql.read_buffer_size|default("128K") }}
 read_rnd_buffer_size  = {{ mysql.read_rnd_buffer_size|default("1M") }}
-join_buffer_size      = {{ mysql.join_buffer_size|default("2M") }}
+join_buffer_size      = {{ mysql.join_buffer_size|default("8M") }}
 thread_stack          = {{ mysql.thread_stack|default("192K") }}
-thread_cache_size     = {{ mysql.thread_cache_size|default("8") }}
+thread_cache_size     = {{ mysql.thread_cache_size|default("6") }}
 
+transaction-isolation = {{ mysql.transaction-isolation|default("READ-COMMITTED") }}
+innodb_stats_on_metadata        = {{ mysql.innodb_stats_on_metadata|default("0") }}
+innodb_file_per_table           = {{ mysql.innodb_file_per_table|default("1") }}
+innodb_buffer_pool_instances    = {{ mysql.innodb_buffer_pool_instances|default("2") }}
+innodb_buffer_pool_size         = {{ mysql.innodb_buffer_pool_size|default("2G") }}
+innodb_flush_log_at_trx_commit  = {{ mysql.innodb_flush_log_at_trx_commit|default("20") }}
+innodb_flush_method             = {{ mysql.innodb_flush_method |default("O_DIRECT ") }}
+innodb_log_file_size            = {{ mysql.innodb_log_file_size|default("256M") }}
+innodb_log_buffer_size          = {{ mysql.innodb_log_buffer_size|default("32M") }}
 
 {% if ansible_os_family == "Debian" %}
 
