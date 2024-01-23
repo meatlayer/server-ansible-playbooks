@@ -25,7 +25,6 @@ join_buffer_size      = {{ mysql.join_buffer_size|default("8M") }}
 thread_stack          = {{ mysql.thread_stack|default("192K") }}
 thread_cache_size     = {{ mysql.thread_cache_size|default("6") }}
 
-transaction-isolation = {{ mysql.transaction-isolation|default("READ-COMMITTED") }}
 innodb_stats_on_metadata        = {{ mysql.innodb_stats_on_metadata|default("0") }}
 innodb_file_per_table           = {{ mysql.innodb_file_per_table|default("1") }}
 innodb_buffer_pool_instances    = {{ mysql.innodb_buffer_pool_instances|default("2") }}
