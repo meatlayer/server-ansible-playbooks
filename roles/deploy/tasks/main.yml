@@ -2,7 +2,7 @@
   file:
     path={{ stores_dir }}
     state=directory
-    mode=555
+    mode=751
     owner={{ deploy.user }}
     group={{ deploy.group }}
   tags:
