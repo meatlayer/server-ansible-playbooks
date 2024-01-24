@@ -1,5 +1,5 @@
 {
-    "stores_dir": "/var/www/html",
+    "stores_dir": "/www",
     "stores":
     {
         "example.com":
