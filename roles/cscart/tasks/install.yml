@@ -3,6 +3,8 @@
   ansible.builtin.file:
     path: "{{ stores_dir }}/{{ item.key }}"
     state: directory
+    owner: "{{ deploy.user }}"
+    group: "{{ deploy.group }}"
     mode: 0755
   when: item.value.cart.dist is defined
   with_dict: "{{ stores }}"
@@ -15,8 +17,8 @@
   template:
     src: local_conf.php.j2
     dest: "{{ stores_dir }}/{{ store.key }}/local_conf.php"
-    #owner: "{{ deploy.user }}"
-    #group: "{{ deploy.group }}"
+    owner: "{{ deploy.user }}"
+    group: "{{ deploy.group }}"
     mode: 0666
   when: store.value.cart.dist is defined
   with_dict: "{{ stores }}"
@@ -52,7 +54,7 @@
 
 - name: setting owner
   ansible.builtin.command:
-    cmd: "chown -R www-data:www-data {{ stores_dir }}/{{ item.key }}/"
+    cmd: "chown -R {{ deploy.user }}:{{ deploy.group }} {{ stores_dir }}/{{ item.key }}/"
     warn: false
   when: item.value.cart.dist is defined
   with_dict: "{{ stores }}"
