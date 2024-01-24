@@ -3,5 +3,6 @@ common:
     - htop
     - mc
     - tmux
-    - vim
+    - nano
     - unzip
+    - redis-server
