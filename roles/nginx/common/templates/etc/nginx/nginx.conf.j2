@@ -65,6 +65,7 @@ http {
     tcp_nopush                  on;
     keepalive_timeout           60;
     reset_timedout_connection   on;
+    http2_max_concurrent_streams 10;
 
     ############################################################################
 
