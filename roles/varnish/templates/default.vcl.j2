@@ -147,14 +147,15 @@ sub vcl_deliver {
 
     unset resp.http.X-Powered-By;
     unset resp.http.Server;
-    #unset resp.http.X-Varnish;
+    unset resp.http.X-Varnish;
     unset resp.http.Via;
     unset resp.http.Link;
-    #unset resp.http.X-Frame-Options;
-    #unset resp.http.X-Content-Type-Options;
-    #unset resp.http.X-Xss-Protection;
-    #unset resp.http.Referer-Policy;
+    unset resp.http.X-Frame-Options;
+    unset resp.http.X-Cache-Age;
+    unset resp.http.X-Cache-Lifetime;
+    unset resp.http.X-Cache-Tags;
     #unset resp.http.X-Permitted-cross-domain-policies;
+
 }
 
 sub vcl_hit {

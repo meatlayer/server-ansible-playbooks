@@ -88,3 +88,36 @@
   when: ansible_os_family == "RedHat"
   tags:
     - varnish
+
+- name: Ensure /www/varnish directory exists
+  file:
+    path: "/www/varnish"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  tags:
+    - varnish
+
+- name: Ensure /www/varnish/logs directory exists
+  file:
+    path: "/www/varnish/logs"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  tags:
+    - varnish
+
+- name: Copy settings.json and controller.php
+  template:
+    src: "{{ item }}"
+    dest: "/www/varnish/{{ item | basename }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - settings.json
+    - controller.php
+  tags:
+    - varnish

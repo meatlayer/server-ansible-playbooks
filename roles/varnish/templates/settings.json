@@ -1,0 +1,20 @@
+{
+    "enabled": true,
+    "server": "127.0.0.1:6081",
+    "cacheTagPrefix": "xcscart",
+    "cacheLifetime": "3600",
+    "excludes": [
+        "^\/index.php?dispatch=checkout.checkout",
+        "^\/index.php?dispatch=profiles.add",
+        "^\/index.php?dispatch=auth.login_form",
+        "^\/admin.php",
+        "^\/orders\/",
+        "^\/orders-en\/",
+        "^\/checkout\/",
+        "^\/checkout-en\/"
+    ],
+    "excludedParams": [
+        "__SID",
+        "noCache"
+    ]
+}

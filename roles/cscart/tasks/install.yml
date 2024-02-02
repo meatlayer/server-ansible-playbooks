@@ -96,13 +96,11 @@
     - deploy
 
 
-- name: Remove the /install directory
+- name: Remove the install directory
   shell: rm -rf "{{ stores_dir }}/{{ item.key }}/install"
-  warn: false
   when: item.value.cart.dist is defined
   with_dict: "{{ stores }}"
   loop_control:
     loop_var: item
   tags:
-    - cscart
     - deploy
