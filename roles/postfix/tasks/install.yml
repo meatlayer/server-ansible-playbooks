@@ -10,6 +10,17 @@
   when: (ansible_os_family == "Debian")
   tags:
    - mail
+   
+- name: Copy postfix seed file
+  template:
+    src: postfix_seed.j2
+    dest: /root/postfix.seed
+    owner: root
+    group: root
+    mode: 0600
+  when: (postfix_sbin_stat.stat.exists == False) and (ansible_os_family == "Debian")
+  tags:
+    - mail
 
 - name: loading preseed
   command: /usr/bin/debconf-set-selections /root/postfix.seed
