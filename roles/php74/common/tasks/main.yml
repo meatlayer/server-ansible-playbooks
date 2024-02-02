@@ -29,13 +29,6 @@
   tags:
     - php74
 
-- name: Check for dpkg lock
-  stat:
-    path: /var/lib/dpkg/lock-frontend
-  register: dpkg_locked
-  tags:
-    - packages
-
 #Installing packages via apt
 - name: installing common packages via apt
   apt:
@@ -43,9 +36,7 @@
     install_recommends=no
     state=present
   with_items: '{{php_role.common.packages}}'
-  when:
-    - ansible_os_family == "Debian"
-    - dpkg_locked.stat.exists == false
+  when: ansible_os_family == "Debian"
   tags:
     - php74
 
