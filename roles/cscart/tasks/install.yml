@@ -40,6 +40,7 @@
     - cscart
     - deploy
 
+
 - name: Set database settings in config.php
   ansible.builtin.template:
     src: config.php.j2
@@ -68,6 +69,36 @@
   shell: /usr/bin/env php7.4 index.php
   args:
     chdir: "{{ stores_dir }}/{{ item.key }}/install"
+  when: item.value.cart.dist is defined
+  with_dict: "{{ stores }}"
+  loop_control:
+    loop_var: item
+  tags:
+    - cscart
+    - deploy
+
+
+- name: Execute SQL enable SSL in CS-Cart secure_storefront
+  shell: >
+    mysql -e "USE cscart; UPDATE cscart_settings_objects SET value = 'Y' WHERE name = 'secure_storefront';"
+  args:
+    executable: /bin/bash
+  tags:
+    - deploy
+
+
+- name: Execute SQL enable SSL in CS-Cart secure_admin
+  shell: >
+    mysql -e "USE cscart; UPDATE cscart_settings_objects SET value = 'Y' WHERE name = 'secure_admin';"
+  args:
+    executable: /bin/bash
+  tags:
+    - deploy
+
+
+- name: Remove the /install directory
+  shell: rm -rf "{{ stores_dir }}/{{ item.key }}/install"
+  warn: false
   when: item.value.cart.dist is defined
   with_dict: "{{ stores }}"
   loop_control:

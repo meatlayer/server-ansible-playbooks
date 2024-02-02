@@ -12,12 +12,14 @@ EnvironmentFile=/etc/sysconfig/varnish
 Type=forking
 LimitNOFILE=131072
 LimitMEMLOCK=82000
+LimitCORE=infinity
 ExecStartPre=/usr/sbin/varnishd -C -f {{ varnish.config_path }}/default.vcl
 ExecStart=/usr/sbin/varnishd -a :{{ varnish.listen_port }} \
-                         -T {{ varnish.admin_listen_host }}:{{ varnish.admin_listen_port }} \
                          -f {{ varnish.config_path }}/default.vcl \
 			 -S {{ varnish.config_path }}/secret \
-			 -s {{ varnish.storage }}
+                         -p feature=+http2 \
+                         -p http_resp_hdr_len=40000 \
+                         -s file,/var/lib/varnish/varnish_storage.bin,1G
 ExecReload=/usr/share/varnish/reload-vcl
 
 [Install]
