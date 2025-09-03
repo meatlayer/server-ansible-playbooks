@@ -7,7 +7,7 @@
             "cart":
             {
                 "storefronts": [],
-                "dist": "http://example.net/cscart_v4.17.2_ru.zip",
+                "dist": "https://github.com/meatlayer/server-ansible-playbooks/releases/download/v418/cscart_v4.18.4_ru.zip",
                 "email": "admin@example.com",
                 "password": "admin",
                 "secret_key": "YOURVERYSECRETCEY",
